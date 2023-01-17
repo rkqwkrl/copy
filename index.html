@@ -1,30 +1,14 @@
-<p class="box01">
-    엣지브라우즈 : <input value="edge://flags/#block-insecure-private-network-requests" readonly>
-    <button onclick="copy_to_clipboard(event)">
-        <img src="https://moonhouse.co.kr/files/attach/images/2021/12/30/93b96bc01016491edde00987253c3a02.png" alt="복사하기" title="엣지브라우즈 복사">
-    </button>
-</p>
-<p class="box01">
-    크롬(웨일)브라우즈 : <input value="chrome://flags/#block-insecure-private-network-requests" readonly>
-    <button onclick="copy_to_clipboard(event)">
-        <img src="https://moonhouse.co.kr/files/attach/images/2021/12/30/93b96bc01016491edde00987253c3a02.png" alt="복사하기" title="크롬(웨일)브라우즈 복사">
-    </button>
-</p> 
+<p id="text">글자</p>
+<button id="button">복사</button>
+function copyClipboard() {
+  const text = document.getElementById('text').textContent;
+  const textarea = document.createElement('textarea');
+  textarea.textContent = text;
+  document.body.append(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  textarea.remove();
+}
 
-
-<style>
-    .box01 input { width:400px; border: none; font-size: 15px; outline: none; }
-    .box01 button { border:none; width:60px; max-width: 100px; vertical-align: bottom;}
-    .box01 button img { width: 100%; }
-</style>
-
-
-<script>
-    function copy_to_clipboard(event) {
-        var copyText = event.target.parentNode.previousElementSibling;
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        document.execCommand("Copy");
-        alert('복사되었습니다, 감사합니다.');
-    }
-</script>
+const button = document.getElementById('button');
+button.addEventListener('click', copyClipboard);
